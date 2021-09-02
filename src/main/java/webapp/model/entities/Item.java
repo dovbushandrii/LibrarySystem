@@ -1,6 +1,7 @@
 package webapp.model.entities;
 
 import lombok.Getter;
+import lombok.Setter;
 import webapp.model.enums.ItemType;
 
 import javax.persistence.Entity;
@@ -20,10 +21,12 @@ public class Item {
     List<Loan> loans;
 
     @Getter
-    private final ItemType type;
+    @Setter
+    private ItemType type;
 
     @Getter
-    private final String name;
+    @Setter
+    private String name;
 
     public Item() {
         this.type = ItemType.NOT_DEF;
