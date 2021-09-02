@@ -12,7 +12,7 @@ import webapp.modelDAO.daos.LoanDAO;
 @RequestMapping("/loans")
 public class LoanRegisterController {
 
-    private LoanDAO loanDAO;
+    private final LoanDAO loanDAO;
 
     @Autowired
     public LoanRegisterController(LoanDAO loanDAO) {
@@ -21,24 +21,38 @@ public class LoanRegisterController {
 
     @GetMapping()
     public String showAllLoans() {
-        return "allLoans";
+        return "loans/showall";
     }
 
     @GetMapping("/{id}")
     public String showLoan(@PathVariable("id") long id, Model model) {
-        model.addAttribute("loan",loanDAO.read(id));
-        return "registerLoan";
+        model.addAttribute("loan", loanDAO.read(id));
+        return "loans/register";
     }
 
     @GetMapping("/new")
     public String newLoan(Model model) {
         model.addAttribute("loan", new Loan());
-        return "registerLoan";
+        return "loans/register";
     }
 
     @PostMapping()
     public String createLoan(@ModelAttribute("loan") Loan loan) {
         loanDAO.create(loan);
-        return "redirect:/";
+        return "redirect:/loans";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String editLoan(@PathVariable("id") long id,
+                           Model model) {
+        model.addAttribute("loan", loanDAO.read(id));
+        return "loans/edit";
+    }
+
+    @PatchMapping("/{id}")
+    public String updateLoan(@ModelAttribute("loan") Loan loan,
+                             @PathVariable("id") long id) {
+        loanDAO.update(loan,id);
+        return "redirect:/loans";
     }
 }

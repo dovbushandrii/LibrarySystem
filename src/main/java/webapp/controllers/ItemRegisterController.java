@@ -29,13 +29,13 @@ public class ItemRegisterController {
     @GetMapping("/{id}")
     public String showItem(@PathVariable("id") long id, Model model) {
         model.addAttribute("item", itemDAO.read(id));
-        return "registerItem";
+        return "items/register";
     }
 
     @GetMapping("/new")
     public String newItem(Model model) {
         model.addAttribute("item", new Item());
-        return "registerItem";
+        return "items/register";
     }
 
     @PostMapping()

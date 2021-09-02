@@ -30,18 +30,25 @@ public class ClientRegisterController {
     @GetMapping("/{id}")
     public String showClient(@PathVariable("id") long id, Model model) {
         model.addAttribute("client", clientDAO.read(id));
-        return "registerClient";
+        return "clients/register";
     }
 
     @GetMapping("/new")
     public String newClient(Model model) {
         model.addAttribute("client", new Client());
-        return "registerClient";
+        return "clients/register";
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("client") Client client) {
+    public String createClient(@ModelAttribute("client") Client client) {
         clientDAO.create(client);
+        return "redirect:/loans/new";
+    }
+
+    @PatchMapping("/{id}")
+    public String updateClient(@ModelAttribute("client") Client client,
+                         @PathVariable("id") long id) {
+        clientDAO.update(client,id);
         return "redirect:/loans/new";
     }
 

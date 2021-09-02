@@ -9,7 +9,7 @@ public class MainController {
 
     @GetMapping()
     public String getMainPage() {
-        return "mainPage";
+        return "main/index";
     }
 
 }
