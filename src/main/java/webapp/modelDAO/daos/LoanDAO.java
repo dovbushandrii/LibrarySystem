@@ -37,7 +37,6 @@ public class LoanDAO {
     public void update(Loan loan, long id) {
         Loan loanToBeUpdated = read(id);
         loanToBeUpdated.setEndDate(loan.getEndDate());
-        loanToBeUpdated.setStatus(loan.getStatus());
     }
 
     public void delete(Loan loan) {
