@@ -6,12 +6,18 @@ import webapp.model.enums.ItemType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Entity
 public class Item {
     @Id
     @GeneratedValue
     private long id;
+
+    @OneToMany(mappedBy="item")
+    @Getter
+    List<Loan> loans;
 
     @Getter
     private final ItemType type;
