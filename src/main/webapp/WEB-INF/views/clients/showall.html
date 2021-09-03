@@ -28,18 +28,17 @@
         <td th:text="${client.getLastName()}">client</td>
         <td th:text="${client.getDateOfBirth()}">client</td>
         <td th:text="${client.getEmail()}">client</td>
-        <td>
-            <form th:method="POST" th:action="@{/clients/{id}(id=${client.getId()})}">
-                <input type="submit" value="Delete"/>
-            </form>
+        <td><form th:method="POST" th:action="@{/clients/{id}(id=${client.getId()})}">
+            <input type="submit" value="Delete"/>
+        </form>
         </td>
     </tr>
 </table>
 
 <table>
     <tr>
-        <td><button type="reset" onclick="window.location.replace('/')">Back</button></td>
-        <td><button type="button" onclick="window.location.replace('/clients/new')">Add Client</button></td>
+        <button type="reset" onclick="window.location.replace('/')">Back</button>
+        <button type="button" onclick="window.location.replace('/clients/new')">Add Client</button>
     </tr>
 </table>
 
