@@ -25,7 +25,7 @@ public class LoanDAO {
 
     public List<Loan> read() {
         return StreamSupport
-                .stream(repo.findAll().spliterator(),false)
+                .stream(repo.findAll().spliterator(), false)
                 .collect(Collectors.toList());
     }
 
@@ -36,14 +36,14 @@ public class LoanDAO {
 
     public void update(Loan loan, long id) {
         Loan loanToBeUpdated = read(id);
+        loanToBeUpdated.setStartDate(loan.getStartDate());
         loanToBeUpdated.setEndDate(loan.getEndDate());
+        loanToBeUpdated.setClient(loan.getClient());
+        loanToBeUpdated.setItems(loan.getItems());
+        repo.save(loanToBeUpdated);
     }
 
-    public void delete(Loan loan) {
-        repo.delete(loan);
-    }
-
-    public void delete() {
-        repo.deleteAll();
+    public void delete(long id) {
+        repo.deleteById(id);
     }
 }

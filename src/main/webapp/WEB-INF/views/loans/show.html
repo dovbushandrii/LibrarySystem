@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>New loan</title>
 </head>
 <body>
-$END$
+
+<table th:object="${loan}">
+    <tr>
+        <td > From: </td>
+        <td th:text="*{startDate}">Start date</td>
+    </tr>
+    <tr>
+        <td > To: </td>
+        <td th:text="*{endDate}">End date</td>
+    </tr>
+    <tr>
+        <td > Client: </td>
+        <td th:text="${loan.getClient().getFirstName() + ' ' +loan.getClient().getLastName()}"></td>
+    </tr>
+    <tr>
+        <td style="vertical-align: top"> Items: </td>
+        <td>
+            <div th:each="item : ${loan.getItems()}">
+                <a th:text="${item.getName()}">Item name</a>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button type="reset" onclick="window.location.replace('/loans')">Back</button>
+        </td>
+    </tr>
+</table>
+
 </body>
 </html>

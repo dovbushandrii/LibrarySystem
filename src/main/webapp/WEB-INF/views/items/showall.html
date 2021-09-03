@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Clients</title>
+    <style>
+        td {
+            border: 1px solid #cccccc;
+            text-align: center;
+            vertical-align: middle;
+            padding: 1px 5px;
+        }
+    </style>
 </head>
 <body>
-$END$
+
+<table th:if="${items.size() > 0}">
+    <tr>
+        <td>Name</td>
+        <td>Type</td>
+    </tr>
+    <tr th:each="item : ${items}">
+        <td th:text="${item.getName()}">name</td>
+        <td th:text="${item.getType().getValue()}">value</td>
+        <td>
+            <form th:method="POST"
+                  th:action="@{/items/{id}(id=${item.getId()})}">
+                <input type="submit" value="Delete"/>
+            </form>
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <button type="reset" onclick="window.location.replace('/')">Back</button>
+        <button type="button" onclick="window.location.replace('/items/new')">Add Item</button>
+    </tr>
+</table>
 </body>
 </html>

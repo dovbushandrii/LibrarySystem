@@ -1,10 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Clients</title>
+    <style>
+        td {
+            border: 1px solid #cccccc;
+            text-align: center;
+            vertical-align: middle;
+            padding: 1px 5px;
+        }
+    </style>
 </head>
 <body>
 
+<table th:if="${loans.size() > 0}">
+    <tr>
+        <td>ID</td>
+        <td>Name</td>
+        <td>Start date</td>
+        <td>End date</td>
+    </tr>
+    <tr th:each="loan: ${loans}">
+        <td th:text="${loan.getId()}">id</td>
+        <td th:text="${loan.getClient().getFirstName() + ' ' +loan.getClient().getLastName()}">client</td>
+        <td th:text="${loan.getStartDate()}">start</td>
+        <td th:text="${loan.getEndDate()}">end</td>
+        <td>
+            <form th:method="GET"
+                  th:action="@{/loans/{id}(id=${loan.getId()})}">
+                <input type="submit" value="Show"/>
+            </form>
+        </td>
+        <td>
+            <form th:method="GET"
+                  th:action="@{/loans/{id}/edit(id=${loan.getId()})}">
+                <input type="submit" value="Edit"/>
+            </form>
+        </td>
+        <td>
+            <form th:method="POST"
+                  th:action="@{/loans/{id}/delete(id=${loan.getId()})}">
+                <input type="submit" value="Delete"/>
+            </form>
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <button type="reset" onclick="window.location.replace('/')">Back</button>
+        <button type="button" onclick="window.location.replace('/loans/new')">Add Loan</button>
+    </tr>
+</table>
 </body>
 </html>

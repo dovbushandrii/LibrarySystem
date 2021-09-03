@@ -24,13 +24,15 @@
         <td>Email</td>
     </tr>
     <tr th:each="client : ${clients}">
-        <td th:text="${client.getFirstName()}">client</td>
-        <td th:text="${client.getLastName()}">client</td>
-        <td th:text="${client.getDateOfBirth()}">client</td>
-        <td th:text="${client.getEmail()}">client</td>
-        <td><form th:method="POST" th:action="@{/clients/{id}(id=${client.getId()})}">
-            <input type="submit" value="Delete"/>
-        </form>
+        <td th:text="${client.getFirstName()}">first name</td>
+        <td th:text="${client.getLastName()}">last name</td>
+        <td th:text="${client.getDateOfBirth()}">DoB</td>
+        <td th:text="${client.getEmail()}">email</td>
+        <td>
+            <form th:method="POST"
+                  th:action="@{/clients/{id}(id=${client.getId()})}">
+                <input type="submit" value="Delete"/>
+            </form>
         </td>
     </tr>
 </table>

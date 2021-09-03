@@ -3,17 +3,19 @@ package webapp.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import webapp.model.entities.Item;
+import webapp.model.enums.ItemType;
 import webapp.modelDAO.daos.ItemDAO;
 
-import java.util.List;
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/items")
 public class ItemRegisterController {
 
-    private ItemDAO itemDAO;
+    private final ItemDAO itemDAO;
 
     @Autowired
     public ItemRegisterController(ItemDAO itemDAO) {
@@ -21,26 +23,34 @@ public class ItemRegisterController {
     }
 
     @GetMapping()
-    @ResponseBody
-    public List<Item> showAll() {
-        return itemDAO.read();
-    }
-
-    @GetMapping("/{id}")
-    public String showItem(@PathVariable("id") long id, Model model) {
-        model.addAttribute("item", itemDAO.read(id));
-        return "items/register";
+    public String showAll(Model model) {
+        model.addAttribute("items", itemDAO.read());
+        return "items/showall";
     }
 
     @GetMapping("/new")
     public String newItem(Model model) {
         model.addAttribute("item", new Item());
+        model.addAttribute("types", ItemType.values());
         return "items/register";
     }
 
     @PostMapping()
-    public String createItem(@ModelAttribute("item") Item item) {
+    public String createItem(@Valid @ModelAttribute("item") Item item,
+                             BindingResult bindingResult,
+                             Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("types", ItemType.values());
+            return "items/register";
+        }
         itemDAO.create(item);
-        return "redirect:/";
+        return "redirect:/items";
+    }
+
+    //TODO: Delete mapping issue
+    @PostMapping("/{id}")
+    public String deleteClient(@PathVariable("id") long id) {
+        itemDAO.delete(id);
+        return "redirect:/items";
     }
 }

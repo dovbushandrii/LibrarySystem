@@ -29,23 +29,7 @@ public class ClientDAO {
                 .collect(Collectors.toList());
     }
 
-    public Client read(long id) {
-        return repo.findById(id)
-                .get();
-    }
-
-    public void update(Client client, long id) {
-        Client clientToBeUpdated = read(id);
-        clientToBeUpdated.setDateOfBirth(client.getDateOfBirth());
-        clientToBeUpdated.setEmail(client.getEmail());
-        clientToBeUpdated.setName(client.getName());
-    }
-
-    public void delete(Client client) {
-        repo.delete(client);
-    }
-
-    public void delete() {
-        repo.deleteAll();
+    public void delete(long id) {
+        repo.deleteById(id);
     }
 }

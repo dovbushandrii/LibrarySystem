@@ -1,10 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>New loan</title>
 </head>
 <body>
+
+<form th:method="POST" th:action="@{/loans/{id}/update(id=${id})}" th:object="${loan}">
+    <table>
+        <tr>
+            <td for="sdate"> From: </td>
+            <td>
+                <input type="date"
+                       th:field="*{startDate}"
+                       id="sdate">
+            </td>
+            <td style="color:red"
+                th:if="${#fields.hasErrors('startDate')}"
+                th:errors="*{startDate}">
+                Date error
+            </td>
+        </tr>
+        <tr>
+            <td for="edate"> To: </td>
+            <td>
+                <input type="date"
+                       th:field="*{endDate}"
+                       id="edate">
+            </td>
+            <td style="color:red"
+                th:if="${#fields.hasErrors('endDate')}"
+                th:errors="*{endDate}">
+                Date error
+            </td>
+        </tr>
+        <tr>
+            <td for="client"> Client: </td>
+            <td>
+                <select th:field="*{client}"
+                        id="client">
+                    <option th:each="clnt : ${clients}"
+                            th:value="${clnt.id}"
+                            th:text="${clnt.getFirstName() + ' ' + clnt.getLastName()}">
+                        Client name
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td for="item"> Items: </td>
+            <td>
+                <select th:field="*{items}"
+                        id="item" multiple="multiple">
+                    <option th:each="itm : ${items}"
+                            th:value="${itm.id}"
+                            th:field="*{items}"
+                            th:text="${itm.getName()}">
+                        Item name
+                    </option>
+                </select>
+            </td>
+            <td style="color:red"
+                th:if="${#fields.hasErrors('items')}"
+                th:errors="*{items}">
+                Items error
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="reset" onclick="window.location.replace('/loans')">Cancel</button>
+                <button type="submit">Submit</button>
+            </td>
+        </tr>
+    </table>
+</form>
 
 </body>
 </html>

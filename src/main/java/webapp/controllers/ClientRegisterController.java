@@ -3,18 +3,19 @@ package webapp.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import webapp.model.entities.Client;
 import webapp.modelDAO.daos.ClientDAO;
 
-import java.util.List;
+import javax.validation.Valid;
 
 
 @Controller
 @RequestMapping("/clients")
 public class ClientRegisterController {
 
-    private ClientDAO clientDAO;
+    private final ClientDAO clientDAO;
 
     @Autowired
     public ClientRegisterController(ClientDAO clientDAO) {
@@ -22,15 +23,9 @@ public class ClientRegisterController {
     }
 
     @GetMapping()
-    @ResponseBody
-    public List<Client> showAll() {
-        return clientDAO.read();
-    }
-
-    @GetMapping("/{id}")
-    public String showClient(@PathVariable("id") long id, Model model) {
-        model.addAttribute("client", clientDAO.read(id));
-        return "clients/register";
+    public String showAll(Model model) {
+        model.addAttribute("clients", clientDAO.read());
+        return "clients/showall";
     }
 
     @GetMapping("/new")
@@ -40,16 +35,19 @@ public class ClientRegisterController {
     }
 
     @PostMapping()
-    public String createClient(@ModelAttribute("client") Client client) {
+    public String createClient(@Valid @ModelAttribute("client") Client client,
+                               BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "clients/register";
+        }
         clientDAO.create(client);
-        return "redirect:/loans/new";
+        return "redirect:/clients";
     }
 
-    @PatchMapping("/{id}")
-    public String updateClient(@ModelAttribute("client") Client client,
-                         @PathVariable("id") long id) {
-        clientDAO.update(client,id);
-        return "redirect:/loans/new";
+    //TODO: Delete mapping issue
+    @PostMapping("/{id}")
+    public String deleteClient(@PathVariable("id") long id) {
+        clientDAO.delete(id);
+        return "redirect:/clients";
     }
-
 }

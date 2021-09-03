@@ -19,28 +19,17 @@ public class ItemDAO {
         this.repo = repo;
     }
 
-
     public void create(Item item) {
         repo.save(item);
     }
 
     public List<Item> read() {
         return StreamSupport
-                .stream(repo.findAll().spliterator(),false)
+                .stream(repo.findAll().spliterator(), false)
                 .collect(Collectors.toList());
     }
 
-
-    public Item read(long id) {
-        return repo.findById(id)
-                .get();
-    }
-
-    public void delete(Item item) {
-        repo.delete(item);
-    }
-
-    public void delete() {
-        repo.deleteAll();
+    public void delete(long id) {
+        repo.deleteById(id);
     }
 }

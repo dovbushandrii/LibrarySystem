@@ -7,18 +7,15 @@ import webapp.model.enums.ItemType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.List;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Item {
     @Id
     @GeneratedValue
-    private long id;
-
-    @OneToMany(mappedBy="item")
     @Getter
-    List<Loan> loans;
+    private long id;
 
     @Getter
     @Setter
@@ -26,6 +23,8 @@ public class Item {
 
     @Getter
     @Setter
+    @NotEmpty(message = "Name should not be empty")
+    @Size(max = 30, message = "Name must be up to 30 characters")
     private String name;
 
     public Item() {

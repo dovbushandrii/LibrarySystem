@@ -1,10 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>New item</title>
 </head>
 <body>
+
+<form th:method="POST" th:action="@{/items}" th:object="${item}">
+    <table>
+        <tr>
+            <td for="name">Item name:</td>
+            <td>
+                <input type="text"
+                       th:field="*{name}"
+                       id="name"/>
+            </td>
+            <td style="color:red"
+                th:if="${#fields.hasErrors('name')}"
+                th:errors="*{name}">
+                Name error
+            </td>
+        </tr>
+        <tr>
+            <td for="type">Item type</td>
+            <td>
+                <select th:field="*{type}"
+                        id="type">
+                    <option th:each="type : ${types}"
+                            th:value="${type}"
+                            th:text="${type.getValue()}">Item type</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="reset" onclick="window.location.replace('/items')">Cancel</button>
+                <button type="submit">Submit</button>
+            </td>
+        </tr>
+    </table>
+</form>
 
 </body>
 </html>
