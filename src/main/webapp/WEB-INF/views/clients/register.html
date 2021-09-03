@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>New client</title>
 </head>
 <body>
+
+<form th:method="POST" th:action="@{/clients}" th:object="${client}">
+    <table>
+        <tr>
+            <td><label for="fname"> First name: </label></td>
+            <td><input type="text" th:field="*{firstName}" id="fname" /></td>
+            <td style="color:red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"> Name error </td>
+        </tr>
+        <tr>
+            <td><label for="lname"> Last name: </label></td>
+            <td><input type="text" th:field="*{lastName}" id="lname"/></td>
+            <td style="color:red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"> Name error </td>
+        </tr>
+        <tr>
+            <td><label for="bdate"> Date od birthday: </label></td>
+            <td><input type="date" th:field="*{dateOfBirth}" id="bdate"></td>
+            <td style="color:red" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"> Date error </td>
+        </tr>
+        <tr>
+            <td><label for="email"> Email: </label></td>
+            <td><input type="email" th:field="*{email}" id="email"/></td>
+            <td style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"> Email error </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="reset" onclick="window.location.replace('/clients')">Cancel</button>
+                <button type="submit">Submit</button>
+            </td>
+        </tr>
+    </table>
+</form>
 
 </body>
 </html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Clients</title>
+    <style>
+        table,
+        table td {
+            border: 1px solid #cccccc;
+        }
+        td {
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+
+<table th:if="${clients.size() > 0}">
+    <tr>
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>Date of birth</td>
+        <td>Email</td>
+    </tr>
+    <tr th:each="client : ${clients}">
+        <td th:text="${client.getFirstName()}">client</td>
+        <td th:text="${client.getLastName()}">client</td>
+        <td th:text="${client.getDateOfBirth()}">client</td>
+        <td th:text="${client.getEmail()}">client</td>
+        <td>
+            <form th:method="POST" th:action="@{/clients/{id}(id=${client.getId()})}">
+                <input type="submit" value="Delete"/>
+            </form>
+        </td>
+    </tr>
+</table>
+
+<a href="/clients/new">Add New Client</a>
+</body>
+</html>
