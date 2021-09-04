@@ -59,7 +59,7 @@ public class Client implements Comparable {
      */
     @Override
     public int compareTo(Object o) {
-        if (o.getClass().getName().equals(this.getClass().getName())) {
+        if(o.getClass().getName().contains(this.getClass().getName())) {
             Client client = (Client) o;
             String thisName = firstName + " " + lastName;
             String compareName = client.firstName + " " + client.lastName;

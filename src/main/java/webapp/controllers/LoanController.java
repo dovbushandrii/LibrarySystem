@@ -93,8 +93,7 @@ public class LoanController {
         return "loans/edit";
     }
 
-    //TODO: Patch mapping issue
-    @PostMapping("/{id}/update")
+    @PatchMapping("/{id}")
     public String updateLoan(@Valid Loan loan,
                              BindingResult bindingResult,
                              @PathVariable("id") long id,
@@ -109,8 +108,7 @@ public class LoanController {
         return "redirect:/loans";
     }
 
-    //TODO: Delete mapping issue
-    @PostMapping("/{id}/delete")
+    @DeleteMapping("/{id}")
     public String deleteLoan(@PathVariable("id") long id) {
         loanDAO.delete(id);
         return "redirect:/loans";

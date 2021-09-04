@@ -51,8 +51,7 @@ public class ClientController {
         return "redirect:/clients";
     }
 
-    //TODO: Delete mapping issue
-    @PostMapping("/{id}")
+    @DeleteMapping("/{id}")
     public String deleteClient(@PathVariable("id") long id) {
         clientDAO.delete(id);
         return "redirect:/clients";

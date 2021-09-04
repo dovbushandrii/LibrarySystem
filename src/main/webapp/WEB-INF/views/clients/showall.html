@@ -29,7 +29,7 @@
         <td th:text="${client.getDateOfBirth()}">DoB</td>
         <td th:text="${client.getEmail()}">email</td>
         <td>
-            <form th:method="POST"
+            <form th:method="DELETE"
                   th:action="@{/clients/{id}(id=${client.getId()})}">
                 <input type="submit" value="Delete"/>
             </form>

@@ -1,7 +1,6 @@
 /**
  * @file MainRunner.java
  * @brief This file contains main runnable class
- *
  * @author Andrii Dovbush
  */
 
@@ -17,4 +16,5 @@ public class MainRunner extends SpringBootServletInitializer {
     public static void main(String[] args) {
         SpringApplication.run(MainRunner.class, args);
     }
+
 }

@@ -23,7 +23,7 @@
         <td th:text="${item.getName()}">name</td>
         <td th:text="${item.getType().getValue()}">value</td>
         <td>
-            <form th:method="POST"
+            <form th:method="DELETE"
                   th:action="@{/items/{id}(id=${item.getId()})}">
                 <input type="submit" value="Delete"/>
             </form>

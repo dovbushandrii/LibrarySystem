@@ -54,8 +54,7 @@ public class ItemController {
         return "redirect:/items";
     }
 
-    //TODO: Delete mapping issue
-    @PostMapping("/{id}")
+    @DeleteMapping("/{id}")
     public String deleteClient(@PathVariable("id") long id) {
         itemDAO.delete(id);
         return "redirect:/items";

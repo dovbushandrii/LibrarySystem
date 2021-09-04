@@ -46,7 +46,7 @@ public class Item implements Comparable{
 
     @Override
     public int compareTo(Object i) {
-        if(i.getClass().getName().equals(this.getClass().getName())) {
+        if(i.getClass().getName().contains(this.getClass().getName())) {
             Item item = (Item) i;
             return name.compareTo(item.getName());
         }

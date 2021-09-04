@@ -39,8 +39,8 @@
             </form>
         </td>
         <td>
-            <form th:method="POST"
-                  th:action="@{/loans/{id}/delete(id=${loan.getId()})}">
+            <form th:method="DELETE"
+                  th:action="@{/loans/{id}(id=${loan.getId()})}">
                 <input type="submit" value="Delete"/>
             </form>
         </td>
