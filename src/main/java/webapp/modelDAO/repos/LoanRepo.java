@@ -7,8 +7,8 @@
 
 package webapp.modelDAO.repos;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import webapp.model.entities.Loan;
 
-public interface LoanRepo extends CrudRepository<Loan, Long> {
+public interface LoanRepo extends JpaRepository<Loan, Long> {
 }

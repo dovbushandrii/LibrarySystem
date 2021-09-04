@@ -8,6 +8,7 @@
 package webapp.modelDAO.daos;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 import webapp.model.entities.Loan;
 import webapp.modelDAO.repos.LoanRepo;
@@ -32,7 +33,7 @@ public class LoanDAO {
 
     public List<Loan> read() {
         return StreamSupport
-                .stream(repo.findAll().spliterator(), false)
+                .stream(repo.findAll(Sort.by(Sort.Direction.DESC,"endDate")).spliterator(), false)
                 .collect(Collectors.toList());
     }
 
