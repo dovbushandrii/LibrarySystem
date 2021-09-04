@@ -4,22 +4,19 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-public class Client {
+public class Client implements Comparable {
     @Id
     @GeneratedValue
     @Getter
     private long id;
 
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     @Getter
     List<Loan> loans;
 
@@ -47,4 +44,15 @@ public class Client {
     @NotEmpty(message = "Email should not be empty")
     @Email(message = "Email should be valid")
     private String email;
+
+    @Override
+    public int compareTo(Object o) {
+        if (o.getClass().getName().equals(this.getClass().getName())) {
+            Client client = (Client) o;
+            String thisName = firstName + " " + lastName;
+            String compareName = client.firstName + " " + client.lastName;
+            return thisName.compareTo(compareName);
+        }
+        throw new IllegalArgumentException("Incompatible class object was given");
+    }
 }

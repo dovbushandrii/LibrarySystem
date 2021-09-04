@@ -26,6 +26,7 @@ public class ClientDAO {
     public List<Client> read() {
         return StreamSupport
                 .stream(repo.findAll().spliterator(), false)
+                .sorted()
                 .collect(Collectors.toList());
     }
 

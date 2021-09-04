@@ -25,7 +25,8 @@ public class ItemDAO {
 
     public List<Item> read() {
         return StreamSupport
-                .stream(repo.findAll().spliterator(), false)
+                .stream(repo.findAllAvailable().spliterator(), false)
+                .sorted()
                 .collect(Collectors.toList());
     }
 

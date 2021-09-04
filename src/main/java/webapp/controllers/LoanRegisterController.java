@@ -12,6 +12,9 @@ import webapp.modelDAO.daos.ItemDAO;
 import webapp.modelDAO.daos.LoanDAO;
 
 import javax.validation.Valid;
+import java.util.Collections;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 @Controller
@@ -68,10 +71,12 @@ public class LoanRegisterController {
     @GetMapping("/{id}/edit")
     public String editLoan(@PathVariable("id") long id,
                            Model model) {
+        Loan loan = loanDAO.read(id);
         model.addAttribute("id", id);
         model.addAttribute("clients", clientDAO.read());
-        model.addAttribute("items", itemDAO.read());
-        model.addAttribute("loan", loanDAO.read(id));
+        model.addAttribute("items", Stream
+                .concat(itemDAO.read().stream(),loan.getItems().stream()).collect(Collectors.toList()));
+        model.addAttribute("loan", loan);
         return "loans/edit";
     }
 

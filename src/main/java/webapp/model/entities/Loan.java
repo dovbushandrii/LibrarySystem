@@ -34,13 +34,13 @@ public class Loan {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate endDate;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @Getter
     @Setter
     @NotEmpty(message = "At least one item should be included")
     private List<Item> items;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @Getter
     @Setter
     private Client client;

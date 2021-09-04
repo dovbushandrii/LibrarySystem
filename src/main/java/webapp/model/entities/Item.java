@@ -11,7 +11,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Item {
+public class Item implements Comparable{
     @Id
     @GeneratedValue
     @Getter
@@ -35,5 +35,14 @@ public class Item {
     public Item(ItemType type, String name) {
         this.type = type;
         this.name = name;
+    }
+
+    @Override
+    public int compareTo(Object i) {
+        if(i.getClass().getName().equals(this.getClass().getName())) {
+            Item item = (Item) i;
+            return name.compareTo(item.getName());
+        }
+        throw new IllegalArgumentException("Incompatible class object was given");
     }
 }
