@@ -1,3 +1,10 @@
+/**
+ * @file LoanRepo.java
+ * @brief This file contains Loan repository interface
+ *
+ * @author Andrii Dovbush
+ */
+
 package webapp.modelDAO.repos;
 
 import org.springframework.data.repository.CrudRepository;

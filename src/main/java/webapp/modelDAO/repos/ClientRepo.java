@@ -1,3 +1,10 @@
+/**
+ * @file ClientRepo.java
+ * @brief This file contains Client repository interface
+ *
+ * @author Andrii Dovbush
+ */
+
 package webapp.modelDAO.repos;
 
 import org.springframework.data.repository.CrudRepository;

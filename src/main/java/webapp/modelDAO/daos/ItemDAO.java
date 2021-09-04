@@ -1,3 +1,10 @@
+/**
+ * @file ItemDAO.java
+ * @brief This file contains Item entities DAO
+ *
+ * @author Andrii Dovbush
+ */
+
 package webapp.modelDAO.daos;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +30,9 @@ public class ItemDAO {
         repo.save(item);
     }
 
+    /*
+    * Returns only items that are not in loan
+     */
     public List<Item> read() {
         return StreamSupport
                 .stream(repo.findAllAvailable().spliterator(), false)

@@ -1,3 +1,10 @@
+/**
+ * @file Client.java
+ * @brief This file contains Client entity class
+ *
+ * @author Andrii Dovbush
+ */
+
 package webapp.model.entities;
 
 import lombok.Getter;
@@ -45,6 +52,11 @@ public class Client implements Comparable {
     @Email(message = "Email should be valid")
     private String email;
 
+    /*
+    * Clients will be compared on:
+    * 'firstName' + ' ' + 'lastName'
+    * line.
+     */
     @Override
     public int compareTo(Object o) {
         if (o.getClass().getName().equals(this.getClass().getName())) {

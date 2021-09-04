@@ -1,3 +1,10 @@
+/**
+ * @file ItemController.java
+ * @brief This file contains Controller fow CRUD operations for Loan class objects
+ *
+ * @author Andrii Dovbush
+ */
+
 package webapp.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,16 +26,16 @@ import java.util.stream.Stream;
 
 @Controller
 @RequestMapping("/loans")
-public class LoanRegisterController {
+public class LoanController {
 
     private final LoanDAO loanDAO;
     private final ClientDAO clientDAO;
     private final ItemDAO itemDAO;
 
     @Autowired
-    public LoanRegisterController(LoanDAO loanDAO,
-                                  ClientDAO clientDAO,
-                                  ItemDAO itemDAO) {
+    public LoanController(LoanDAO loanDAO,
+                          ClientDAO clientDAO,
+                          ItemDAO itemDAO) {
         this.loanDAO = loanDAO;
         this.clientDAO = clientDAO;
         this.itemDAO = itemDAO;
@@ -68,6 +75,11 @@ public class LoanRegisterController {
         return "redirect:/loans";
     }
 
+    /*
+     * As available items returns on page
+     * all items that are not in loan and
+     * items of Loan object with id @id
+     */
     @GetMapping("/{id}/edit")
     public String editLoan(@PathVariable("id") long id,
                            Model model) {
@@ -87,9 +99,6 @@ public class LoanRegisterController {
                              BindingResult bindingResult,
                              @PathVariable("id") long id,
                              Model model) {
-        if(loan.getEndDate().isBefore(loan.getStartDate())){
-            bindingResult.addError(new ObjectError("endDate","End date must be after start date"));
-        }
         if (bindingResult.hasErrors()) {
             model.addAttribute("id", id);
             model.addAttribute("clients", clientDAO.read());

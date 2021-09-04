@@ -1,3 +1,10 @@
+/**
+ * @file WebConfig.java
+ * @brief This file contains WebConfig class that configures Thymeleaf eng. and other beans
+ *
+ * @author Andrii Dovbush
+ */
+
 package webapp.config;
 
 import org.springframework.beans.factory.annotation.Autowired;

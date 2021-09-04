@@ -1,3 +1,10 @@
+/**
+ * @file Client.java
+ * @brief This file contains possible Item types
+ *
+ * @author Andrii Dovbush
+ */
+
 package webapp.model.enums;
 
 public enum ItemType {

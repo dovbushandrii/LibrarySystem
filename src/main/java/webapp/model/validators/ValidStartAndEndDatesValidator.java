@@ -1,3 +1,10 @@
+/**
+ * @file ValidStartAndEndDatesValidator.java
+ * @brief This file contains validator class of ValidStartAndEndDates annotation
+ *
+ * @author Andrii Dovbush
+ */
+
 package webapp.model.validators;
 
 import org.springframework.expression.spel.standard.SpelExpressionParser;

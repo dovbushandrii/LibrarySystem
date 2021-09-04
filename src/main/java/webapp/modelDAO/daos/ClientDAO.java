@@ -1,3 +1,10 @@
+/**
+ * @file ClientDAO.java
+ * @brief This file contains Client entities DAO
+ *
+ * @author Andrii Dovbush
+ */
+
 package webapp.modelDAO.daos;
 
 import org.springframework.beans.factory.annotation.Autowired;

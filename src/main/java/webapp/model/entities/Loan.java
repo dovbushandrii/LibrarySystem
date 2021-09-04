@@ -1,3 +1,10 @@
+/**
+ * @file Client.java
+ * @brief This file contains Loan entity class
+ *
+ * @author Andrii Dovbush
+ */
+
 package webapp.model.entities;
 
 import lombok.Getter;
@@ -14,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+//endDate of Loan object should not be after startDate
 @ValidStartAndEndDates(startDate = "startDate",
         endDate = "endDate",
         message = "End date should not be after start date")

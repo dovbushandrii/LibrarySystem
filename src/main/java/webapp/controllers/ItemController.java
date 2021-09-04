@@ -1,3 +1,10 @@
+/**
+ * @file ItemController.java
+ * @brief This file contains Controller fow CRUD operations for Item class objects
+ *
+ * @author Andrii Dovbush
+ */
+
 package webapp.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +20,12 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/items")
-public class ItemRegisterController {
+public class ItemController {
 
     private final ItemDAO itemDAO;
 
     @Autowired
-    public ItemRegisterController(ItemDAO itemDAO) {
+    public ItemController(ItemDAO itemDAO) {
         this.itemDAO = itemDAO;
     }
 

@@ -1,3 +1,10 @@
+/**
+ * @file Item.java
+ * @brief This file contains Item entity class
+ *
+ * @author Andrii Dovbush
+ */
+
 package webapp.model.entities;
 
 import lombok.Getter;

@@ -1,3 +1,10 @@
+/**
+ * @file ClientController.java
+ * @brief This file contains Controller fow CRUD operations for Client class objects
+ *
+ * @author Andrii Dovbush
+ */
+
 package webapp.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +20,12 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/clients")
-public class ClientRegisterController {
+public class ClientController {
 
     private final ClientDAO clientDAO;
 
     @Autowired
-    public ClientRegisterController(ClientDAO clientDAO) {
+    public ClientController(ClientDAO clientDAO) {
         this.clientDAO = clientDAO;
     }
 
