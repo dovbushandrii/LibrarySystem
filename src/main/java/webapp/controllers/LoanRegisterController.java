@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import webapp.model.entities.Loan;
 import webapp.modelDAO.daos.ClientDAO;
@@ -12,7 +13,6 @@ import webapp.modelDAO.daos.ItemDAO;
 import webapp.modelDAO.daos.LoanDAO;
 
 import javax.validation.Valid;
-import java.util.Collections;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -75,7 +75,8 @@ public class LoanRegisterController {
         model.addAttribute("id", id);
         model.addAttribute("clients", clientDAO.read());
         model.addAttribute("items", Stream
-                .concat(itemDAO.read().stream(),loan.getItems().stream()).collect(Collectors.toList()));
+                .concat(itemDAO.read().stream(),loan.getItems().stream())
+                .collect(Collectors.toList()));
         model.addAttribute("loan", loan);
         return "loans/edit";
     }
@@ -86,6 +87,9 @@ public class LoanRegisterController {
                              BindingResult bindingResult,
                              @PathVariable("id") long id,
                              Model model) {
+        if(loan.getEndDate().isBefore(loan.getStartDate())){
+            bindingResult.addError(new ObjectError("endDate","End date must be after start date"));
+        }
         if (bindingResult.hasErrors()) {
             model.addAttribute("id", id);
             model.addAttribute("clients", clientDAO.read());

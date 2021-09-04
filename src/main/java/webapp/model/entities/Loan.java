@@ -3,17 +3,20 @@ package webapp.model.entities;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
+import webapp.model.validators.ValidStartAndEndDates;
 
 import javax.persistence.*;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PastOrPresent;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@ValidStartAndEndDates(startDate = "startDate",
+        endDate = "endDate",
+        message = "End date should not be after start date")
 public class Loan {
     @Id
     @GeneratedValue
@@ -22,7 +25,7 @@ public class Loan {
 
     @Getter
     @Setter
-    @PastOrPresent(message = "Date must be valid")
+    @FutureOrPresent(message = "Date must be valid")
     @NotNull(message = "Date field should not be empty")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate startDate;
@@ -50,15 +53,5 @@ public class Loan {
         this.items = new ArrayList<>();
         this.startDate = null;
         this.endDate = null;
-    }
-
-    public Loan(LocalDate startDate,
-                LocalDate endDate,
-                List<Item> items,
-                Client client) {
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.items = items;
-        this.client = client;
     }
 }
