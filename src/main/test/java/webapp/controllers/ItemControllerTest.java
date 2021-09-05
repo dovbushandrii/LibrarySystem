@@ -5,7 +5,7 @@
  * @author Andrii Dovbush
  */
 
-package webapp;
+package webapp.controllers;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
