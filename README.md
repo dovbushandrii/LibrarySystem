@@ -9,10 +9,10 @@ Basic info:
 - IDE: Intellij IDEA
 
 Description:
-Database management system for library. Allows you to register new clients,
-register new items, and create/read/edit/delete loans.
+Database management system for library. Allows you to register/delete clients,
+register/delete items, and create/read/edit/delete loans.
  
-Loans can have multiple items. Clients can have multiple loan.
+Loans can have multiple items. Clients can have multiple loans.
 If you delete client - all his loans will be deleted, items will be
 available in list again.
 Items that are currently in loan, are not available for another loan.
