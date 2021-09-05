@@ -3,8 +3,8 @@ Library Loan System
 Basic info:
 - Author: Andrii Dovbush
 
-- Used technologies: Java, Spring/Spring Boot, Hibernate, Thymeleaf,
-Lombok, HTML5, PosgreSQL
+- Used technologies: Java, Spring/Spring Boot, Hibernate, Thymeleaf, JUnit,
+  PosgreSQL, Lombok, HTML5
 
 - IDE: Intellij IDEA
 
