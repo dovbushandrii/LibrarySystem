@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"/>
     <title>Loans</title>
     <style>
         td {
@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<table th:if="${loans.size() > 0}">
+<table th:if="${loans.size() > 0}" id="loan-table">
     <tr>
         <td>ID</td>
         <td>Name</td>
@@ -22,7 +22,7 @@
         <td>End date</td>
     </tr>
     <tr th:each="loan: ${loans}">
-        <td th:text="${loan.getId()}">id</td>
+        <td th:text="${loan.getId()}" data-id="${loan.getId()}">id</td>
         <td th:text="${loan.getClient().getFirstName() + ' ' +loan.getClient().getLastName()}">client</td>
         <td th:text="${loan.getStartDate()}">start</td>
         <td th:text="${loan.getEndDate()}">end</td>

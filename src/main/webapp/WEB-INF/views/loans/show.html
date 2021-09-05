@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"/>
     <title>Loan</title>
 </head>
 <body>
@@ -21,7 +21,7 @@
     </tr>
     <tr>
         <td style="vertical-align: top"> Items: </td>
-        <td>
+        <td id="loan-items">
             <div th:each="item : ${loan.getItems()}">
                 <a th:text="${item.getName()}">Item name</a>
             </div>

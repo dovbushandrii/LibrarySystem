@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"/>
     <title>Available items</title>
     <style>
         td {
@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<table th:if="${items.size() > 0}">
+<table th:if="${items.size() > 0}" id="item-table">
     <tr>
         <td>Name</td>
         <td>Type</td>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"/>
     <title>Clients</title>
     <style>
         table,
@@ -16,7 +16,7 @@
 </head>
 <body>
 
-<table th:if="${clients.size() > 0}">
+<table th:if="${clients.size() > 0}" id="client-table">
     <tr>
         <td>First Name</td>
         <td>Last Name</td>
