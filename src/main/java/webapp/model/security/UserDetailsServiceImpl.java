@@ -1,10 +1,9 @@
-package webapp.model.security.services;
+package webapp.model.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
-import webapp.model.security.SecurityUser;
 import webapp.modelDAO.daos.SystemUserDAO;
 
 @Service("userDetailsServiceImpl")
