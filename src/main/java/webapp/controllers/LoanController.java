@@ -8,11 +8,11 @@
 package webapp.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import webapp.model.entities.Loan;
 import webapp.modelDAO.daos.ClientDAO;
@@ -94,6 +94,7 @@ public class LoanController {
     }
 
     @PatchMapping("/{id}")
+    @PreAuthorize("hasAuthority('admins.edit')")
     public String updateLoan(@Valid Loan loan,
                              BindingResult bindingResult,
                              @PathVariable("id") long id,
@@ -109,6 +110,7 @@ public class LoanController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('admins.edit')")
     public String deleteLoan(@PathVariable("id") long id) {
         loanDAO.delete(id);
         return "redirect:/loans";

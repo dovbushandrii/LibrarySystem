@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <title>Main page</title>
@@ -7,9 +7,25 @@
 <body>
 <table>
     <tr>
-        <td><button type="reset" onclick="window.location.replace('/loans')">Loans</button></td>
-        <td><button type="reset" onclick="window.location.replace('/clients')">Clients</button></td>
-        <td><button type="reset" onclick="window.location.replace('/items')">Items</button></td>
+        <td>
+            <button type="reset" onclick="window.location.replace('/loans')">Loans</button>
+        </td>
+        <td>
+            <button type="reset" onclick="window.location.replace('/clients')">Clients</button>
+        </td>
+        <td>
+            <button type="reset" onclick="window.location.replace('/items')">Items</button>
+        </td>
+        <td>
+            <form th:method="POST" action="/auth/logout">
+                <button type="submit">Logout</button>
+            </form>
+        </td>
+        <td>
+            <form th:method="DELETE" action="/auth">
+                <button type="submit">Delete User</button>
+            </form>
+        </td>
     </tr>
 </table>
 </body>
