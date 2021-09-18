@@ -1,18 +1,17 @@
 /**
  * @file ItemController.java
  * @brief This file contains Controller fow CRUD operations for Loan class objects
- *
  * @author Andrii Dovbush
  */
 
 package webapp.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import webapp.model.entities.Loan;
 import webapp.modelDAO.daos.ClientDAO;
@@ -28,6 +27,8 @@ import java.util.stream.Stream;
 @RequestMapping("/loans")
 public class LoanController {
 
+    @Value("${application.url.prefix}")
+    private String urlPrefix;
     private final LoanDAO loanDAO;
     private final ClientDAO clientDAO;
     private final ItemDAO itemDAO;
@@ -43,18 +44,21 @@ public class LoanController {
 
     @GetMapping()
     public String showAllLoans(Model model) {
+        model.addAttribute("urlPrefix", urlPrefix);
         model.addAttribute("loans", loanDAO.read());
         return "loans/showall";
     }
 
     @GetMapping("/{id}")
     public String showLoan(@PathVariable("id") long id, Model model) {
+        model.addAttribute("urlPrefix", urlPrefix);
         model.addAttribute("loan", loanDAO.read(id));
         return "loans/show";
     }
 
     @GetMapping("new")
     public String newLoan(Model model) {
+        model.addAttribute("urlPrefix", urlPrefix);
         model.addAttribute("loan", new Loan());
         model.addAttribute("clients", clientDAO.read());
         model.addAttribute("items", itemDAO.read());
@@ -67,6 +71,7 @@ public class LoanController {
                              BindingResult bindingResult,
                              Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("urlPrefix", urlPrefix);
             model.addAttribute("clients", clientDAO.read());
             model.addAttribute("items", itemDAO.read());
             return "loans/register";
@@ -84,10 +89,11 @@ public class LoanController {
     public String editLoan(@PathVariable("id") long id,
                            Model model) {
         Loan loan = loanDAO.read(id);
+        model.addAttribute("urlPrefix", urlPrefix);
         model.addAttribute("id", id);
         model.addAttribute("clients", clientDAO.read());
         model.addAttribute("items", Stream
-                .concat(itemDAO.read().stream(),loan.getItems().stream())
+                .concat(itemDAO.read().stream(), loan.getItems().stream())
                 .collect(Collectors.toList()));
         model.addAttribute("loan", loan);
         return "loans/edit";
@@ -99,6 +105,7 @@ public class LoanController {
                              @PathVariable("id") long id,
                              Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("urlPrefix", urlPrefix);
             model.addAttribute("id", id);
             model.addAttribute("clients", clientDAO.read());
             model.addAttribute("items", itemDAO.read());

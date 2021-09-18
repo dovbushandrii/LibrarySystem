@@ -1,13 +1,13 @@
 /**
  * @file ClientController.java
  * @brief This file contains Controller fow CRUD operations for Client class objects
- *
  * @author Andrii Dovbush
  */
 
 package webapp.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +22,8 @@ import javax.validation.Valid;
 @RequestMapping("/clients")
 public class ClientController {
 
+    @Value("${application.url.prefix}")
+    private String urlPrefix;
     private final ClientDAO clientDAO;
 
     @Autowired
@@ -31,12 +33,14 @@ public class ClientController {
 
     @GetMapping()
     public String showAll(Model model) {
+        model.addAttribute("urlPrefix", urlPrefix);
         model.addAttribute("clients", clientDAO.read());
         return "clients/showall";
     }
 
     @GetMapping("/new")
     public String newClient(Model model) {
+        model.addAttribute("urlPrefix", urlPrefix);
         model.addAttribute("client", new Client());
         return "clients/register";
     }

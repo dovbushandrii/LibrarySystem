@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<form th:method="PATCH" th:action="@{/loans/{id}(id=${id})}" th:object="${loan}">
+<form th:method="PATCH" th:action="@{{urlPrefix}/loans/{id}(id=${id},urlPrefix=${urlPrefix})}" th:object="${loan}">
     <table>
         <tr>
             <td for="sdate"> From: </td>

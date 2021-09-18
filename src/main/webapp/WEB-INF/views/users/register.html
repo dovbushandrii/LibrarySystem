@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>New user</title>
+</head>
+<body>
+
+<h3>Register new admin</h3>
+<form th:method="POST" th:action="@{{urlPrefix}/auth(urlPrefix = ${urlPrefix})}" th:object="${user}">
+    <table>
+        <tr>
+            <td for="name">Username:</td>
+            <td>
+                <input type="text"
+                       th:field="*{username}"
+                       id="username"/>
+            </td>
+        </tr>
+        <tr>
+            <td for="name">Password:</td>
+            <td>
+                <input type="password"
+                       th:field="*{password}"
+                       id="password"/>
+            </td>
+            <td style="color:red"
+                th:if="${#fields.hasErrors('password')}"
+                th:errors="*{password}">
+                Name error
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="reset"
+                        th:attr="onclick=|window.location.replace('@{{urlPrefix}/ (urlPrefix = ${urlPrefix})}')|">
+                    Cancel
+                </button>
+                <button type="submit">Create user</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>

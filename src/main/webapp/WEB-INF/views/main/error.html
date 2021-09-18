@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <body>
 <h1>Something went wrong! </h1>
-<button type="reset" onclick="window.location.replace('/')">Home page</button>
+<button type="reset"
+        th:attr="onclick=|window.location.replace('@{{urlPrefix}/ (urlPrefix = ${urlPrefix})}')|">
+    Home page
+</button>
 </body>
 </html>

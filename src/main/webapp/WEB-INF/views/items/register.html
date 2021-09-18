@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<form th:method="POST" th:action="@{/items}" th:object="${item}">
+<form th:method="POST" th:action="@{{urlPrefix}/items (urlPrefix = ${urlPrefix})}" th:object="${item}">
     <table>
         <tr>
             <td for="name">Item name:</td>
@@ -34,7 +34,10 @@
         </tr>
         <tr>
             <td>
-                <button type="reset" onclick="window.location.replace('/items')">Cancel</button>
+                <button type="reset"
+                        th:attr="onclick=|window.location.replace('@{{urlPrefix}/items (urlPrefix = ${urlPrefix})}')|">
+                    Cancel
+                </button>
                 <button type="submit">Submit</button>
             </td>
         </tr>

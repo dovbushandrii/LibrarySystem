@@ -46,8 +46,10 @@ public class Client implements Comparable {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateOfBirth;
 
+    
     @Getter
     @Setter
+    @Column(unique = true)
     @NotEmpty(message = "Email should not be empty")
     @Email(message = "Email should be valid")
     private String email;
