@@ -17,6 +17,9 @@ If you delete client - all his loans will be deleted, items will be
 available in list again.
 Items that are currently in loan, are not available for another loan.
 
+Attention:
+Before use, set application properties.
+
 GitHub:  https://github.com/dovbushandrii/LibrarySystem
 
 Licence

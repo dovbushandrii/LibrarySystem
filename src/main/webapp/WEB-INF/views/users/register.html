@@ -7,7 +7,7 @@
 <body>
 
 <h3>Register new admin</h3>
-<form th:method="POST" th:action="@{/auth}" th:object="${user}">
+<form th:method="POST" th:action="@{{urlPrefix}/auth(urlPrefix = ${urlPrefix})}" th:object="${user}">
     <table>
         <tr>
             <td for="name">Username:</td>
@@ -32,7 +32,10 @@
         </tr>
         <tr>
             <td>
-                <button type="reset" onclick="window.location.replace('/')">Cancel</button>
+                <button type="reset"
+                        th:attr="onclick=|window.location.replace('@{{urlPrefix}/ (urlPrefix = ${urlPrefix})}')|">
+                    Cancel
+                </button>
                 <button type="submit">Create user</button>
             </td>
         </tr>

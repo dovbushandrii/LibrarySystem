@@ -63,7 +63,9 @@
         <tr>
             <td>
                 <button type="reset"
-                        onclick="window.location.replace('clients')">Cancel</button>
+                        th:attr="onclick=|window.location.replace('@{{urlPrefix}/clients (urlPrefix = ${urlPrefix})}')|">
+                    Cancel
+                </button>
                 <button type="submit">Submit</button>
             </td>
         </tr>

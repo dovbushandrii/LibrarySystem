@@ -29,7 +29,10 @@
     </tr>
     <tr>
         <td>
-            <button type="reset" onclick="window.location.replace('/loans')">Back</button>
+            <button type="reset"
+                    th:attr="onclick=|window.location.replace('@{{urlPrefix}/loans (urlPrefix = ${urlPrefix})}')|">
+                Back
+            </button>
         </td>
     </tr>
 </table>

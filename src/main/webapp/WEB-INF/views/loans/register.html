@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<form th:method="POST" th:action="@{/loans}" th:object="${loan}">
+<form th:method="POST" th:action="@{{urlPrefix}/loans (urlPrefix = ${urlPrefix})}" th:object="${loan}">
     <table>
         <tr>
             <td for="sdate"> From: </td>
@@ -69,7 +69,10 @@
         </tr>
         <tr>
             <td>
-                <button type="reset" onclick="window.location.replace('/loans')">Cancel</button>
+                <button type="reset"
+                        th:attr="onclick=|window.location.replace('@{{urlPrefix}/loans (urlPrefix = ${urlPrefix})}')|">
+                    Cancel
+                </button>
                 <button type="submit">Submit</button>
             </td>
         </tr>

@@ -39,8 +39,14 @@
 
 <table>
     <tr>
-        <button type="reset" onclick="window.location.replace('/')">Back</button>
-        <button type="button" onclick="window.location.replace('/clients/new')">Add Client</button>
+        <button type="reset"
+                th:attr="onclick=|window.location.replace('@{{urlPrefix}/ (urlPrefix = ${urlPrefix})}')|">
+            Back
+        </button>
+        <button type="reset"
+                th:attr="onclick=|window.location.replace('@{{urlPrefix}/clients/new (urlPrefix = ${urlPrefix})}')|">
+            Add Client
+        </button>
     </tr>
 </table>
 

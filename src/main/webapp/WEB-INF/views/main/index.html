@@ -8,21 +8,30 @@
 <table>
     <tr>
         <td>
-            <button type="reset" onclick="window.location.replace('/loans')">Loans</button>
+            <button type="reset"
+                    th:attr="onclick=|window.location.replace('@{{urlPrefix}/loans (urlPrefix = ${urlPrefix})}')|">
+                Loans
+            </button>
         </td>
         <td>
-            <button type="reset" onclick="window.location.replace('/clients')">Clients</button>
+            <button type="reset"
+                    th:attr="onclick=|window.location.replace('@{{urlPrefix}/clients (urlPrefix = ${urlPrefix})}')|">
+                Clients
+            </button>
         </td>
         <td>
-            <button type="reset" onclick="window.location.replace('/items')">Items</button>
+            <button type="reset"
+                    th:attr="onclick=|window.location.replace('@{{urlPrefix}/items (urlPrefix = ${urlPrefix})}')|">
+                Items
+            </button>
         </td>
         <td>
-            <form th:method="POST" action="/auth/logout">
+            <form th:method="POST" th:action="@{{urlPrefix}/auth/logout (urlPrefix = ${urlPrefix})}">
                 <button type="submit">Logout</button>
             </form>
         </td>
         <td>
-            <form th:method="DELETE" action="/auth">
+            <form th:method="DELETE" th:action="@{{urlPrefix}/auth (urlPrefix = ${urlPrefix})}">
                 <button type="submit">Delete User</button>
             </form>
         </td>
