@@ -66,7 +66,6 @@ public class LoanController {
     }
 
     @PostMapping()
-    @Transactional
     public String createLoan(@Valid @ModelAttribute("loan") Loan loan,
                              BindingResult bindingResult,
                              Model model) {
